@@ -31,7 +31,7 @@ build_script:
   - cmd: cd qtkeychain
   - cmd: mkdir build
   - cmd: cd build
-  - cmd: cmake .. -DCMAKE_PREFIX_PATH=%QT%\lib\cmake -G "MinGW Makefiles"
+  - cmd: cmake .. -DCMAKE_PREFIX_PATH=%QT%\lib\cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
   - cmd: cmake --build .
   
 after_build:
