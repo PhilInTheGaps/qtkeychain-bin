@@ -25,6 +25,7 @@ init:
   - cmd: dir %MINGW_DIR%
   
 build_script:
+  - cmd: cd qtkeychain
   - cmd: mkdir build
   - cmd: cd build
   - cmd: cmake .. -DCMAKE_PREFIX_PATH=%QT%\lib\cmake -G "MinGW Makefiles"
@@ -34,5 +35,5 @@ after_build:
   - cmd: call package-artifacts.bat
   
 artifacts:
-  - path: release\qt5keychain-%COMPILER_NAME%.zip
-    name: qt5keychain-%COMPILER_NAME%
+  - path: qtkeychain\release\qt5keychain-%COMPILER_NAME%.zip
+    name: qtkeychain\qt5keychain-%COMPILER_NAME%
