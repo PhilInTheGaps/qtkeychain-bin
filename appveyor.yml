@@ -23,7 +23,10 @@ init:
   - cmd: set PATH=%QT%\bin;%PATH%
   - cmd: echo %PATH%
   - cmd: dir %MINGW_DIR%
-  
+
+before_build:
+  - git submodule update --init --recursive
+
 build_script:
   - cmd: cd qtkeychain
   - cmd: mkdir build
