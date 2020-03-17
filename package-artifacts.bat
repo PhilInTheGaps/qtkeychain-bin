@@ -1,5 +1,6 @@
 echo "Packing artifacts ..."
 
+cd qtkeychain
 mkdir release
 cd release
 mkdir bin
@@ -21,4 +22,4 @@ if defined COMPILER_NAME (
   7z a qt5keychain.zip .
 )
 
-cd ..
+cd ..\..
