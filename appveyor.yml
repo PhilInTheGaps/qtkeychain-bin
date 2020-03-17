@@ -33,7 +33,7 @@ build_script:
   - cmd: cd build
   - cmd: cmake .. -DCMAKE_PREFIX_PATH=%QT%\lib\cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND"
   - cmd: cmake --build .
-  - cmd: cd ..
+  - cmd: cd ..\..
   
 after_build:
   - cmd: call package-artifacts.bat
