@@ -1,0 +1,38 @@
+version: '0.10.0-{build}'
+image: Visual Studio 2015
+
+environment:
+  matrix:
+  - COMPILER_NAME: mingw-w64-7.3.0-qt5-13
+    QT: C:\Qt\5.13\mingw73_64
+    MINGW_DIR: C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin
+    
+  - COMPILER_NAME: mingw-w64-7.3.0-qt5-12
+    QT: C:\Qt\5.12\mingw73_64
+    MINGW_DIR: C:\mingw-w64\x86_64-7.3.0-posix-seh-rt_v5-rev0\mingw64\bin
+    
+  - COMPILER_NAME: mingw-32-7.3.0-qt5-12
+    QT: C:\Qt\5.12\mingw73_32
+    MINGW_DIR: C:\Qt\Tools\mingw730_32\bin
+
+configuration:
+  - Release
+
+init:
+  - cmd: set PATH=%MINGW_DIR%;%PATH%
+  - cmd: set PATH=%QT%\bin;%PATH%
+  - cmd: echo %PATH%
+  - cmd: dir %MINGW_DIR%
+  
+build_script:
+  - cmd: mkdir build
+  - cmd: cd build
+  - cmd: cmake .. -DCMAKE_PREFIX_PATH=%QT%\lib\cmake -G "MinGW Makefiles"
+  - cmd: cmake --build .
+  
+after_build:
+  - cmd: call package-artifacts.bat
+  
+artifacts:
+  - path: release\qt5keychain-%COMPILER_NAME%.zip
+    name: qt5keychain-%COMPILER_NAME%
